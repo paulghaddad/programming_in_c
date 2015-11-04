@@ -10,25 +10,24 @@ void getNumberAndBase (void)
   printf("Number to be converted? ");
   scanf("%li", &numberToConvert);
 
-  printf("Base? ");
-  scanf("%i", &base);
-
-  if ( base < 2 || base > 16 )
+  do
   {
-    printf("Bad base - must be between 2 and 16\n");
-    base = 10;
-  }
+    printf("Enter base value between 2 and 16 ");
+    scanf("%i", &base);
+  } while ( base < 2 || base > 16 );
 }
 
 void convertNumber (void)
 {
+  long int tempNumberToConvert = numberToConvert;
+
   do
   {
-    convertedNumber[digit] = numberToConvert % base;
+    convertedNumber[digit] = tempNumberToConvert % base;
     ++digit;
-    numberToConvert /= base;
+    tempNumberToConvert /= base;
   }
-  while ( numberToConvert != 0 );
+  while ( tempNumberToConvert != 0 );
 }
 
 void displayConvertedNumber (void)
@@ -45,6 +44,9 @@ void displayConvertedNumber (void)
     nextDigit = convertedNumber[digit];
     printf("%c", baseDigits[nextDigit]);
   }
+
+  if ( numberToConvert == 0 )
+    printf("%c", baseDigits[0]);
 
   printf("\n");
 }

@@ -1,11 +1,11 @@
 #include <stdio.h>
 
-void transposeArray ( int array1[4][5], int array2[5][4] )
+void transposeArray ( int array1[4][5], int array2[5][4], int rows, int columns )
 {
   int row, column;
 
-  for ( row = 0; row < 4; ++row )
-    for ( column = 0; column < 5; ++column )
+  for ( row = 0; row < rows; ++row )
+    for ( column = 0; column < columns; ++column )
       array2[column][row] = array1[row][column];
 }
 
@@ -34,10 +34,10 @@ int main (void)
   int newArray[5][4];
 
   void displayArray (int array[5][4]);
-  void transposeArray ( int array1[4][5], int array2[5][4] );
+  void transposeArray ( int array1[4][5], int array2[5][4], int rows, int columns );
 
   printf("Transposed matrix:\n");
-  transposeArray ( originalArray, newArray );
+  transposeArray ( originalArray, newArray, 4, 5 );
 
   displayArray ( newArray );
 
